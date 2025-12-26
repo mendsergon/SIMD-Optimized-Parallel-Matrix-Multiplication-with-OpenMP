@@ -1,0 +1,2 @@
+# SIMD-Optimized-Parallel-Matrix-Multiplication-with-OpenMP
+High-performance C program combining OpenMP parallelism with AVX/SSE vectorization. Compares 5 implementations (serial, tasks+AVX, tasks+SSE, optimized AVX, parallel for+AVX) with comprehensive benchmarking, thread scaling analysis, and interactive testing. Demonstrates modern CPU optimization through SIMD intrinsics and memory alignment.
