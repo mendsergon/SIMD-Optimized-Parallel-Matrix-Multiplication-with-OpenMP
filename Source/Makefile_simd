@@ -1,0 +1,25 @@
+CC = gcc
+CFLAGS = -fopenmp -O3 -Wall -Wextra -march=native -mavx -mfma
+TARGET = matrix_mult_simd
+SOURCES = main_simd.c matrix_mult_simd.c
+HEADERS = matrix_mult_simd.h
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCES) $(HEADERS)
+	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET) -lm
+
+debug: $(SOURCES) $(HEADERS)
+	$(CC) $(CFLAGS) -g $(SOURCES) -o $(TARGET)_debug -lm
+
+# SSE version 
+sse: $(SOURCES) $(HEADERS)
+	$(CC) -fopenmp -O3 -Wall -Wextra -msse4.2 $(SOURCES) -o $(TARGET)_sse -lm
+
+clean:
+	rm -f $(TARGET) $(TARGET)_debug $(TARGET)_sse
+
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run debug sse
